@@ -2,7 +2,7 @@
 cmake_minimum_required(VERSION 3.21)
 
 project(cuSZp
-        VERSION 0.0.2
+        VERSION 0.1.2
         DESCRIPTION "Error-bounded GPU lossy compression library"
         )
 set(namespace "cuSZp")
@@ -25,10 +25,9 @@ set(CMAKE_CUDA_HOST_COMPILER ${CMAKE_CXX_COMPILER})
 set(CMAKE_CUDA_SEPARABLE_COMPILATION ON)
 set(CMAKE_CUDA_STANDARD "17")
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-#set(CMAKE_CUDA_FLAGS_INIT "-std=c++17 -allow-unsupported-compiler")
-#set(CMAKE_CUDA_ARCHITECTURES 60 61 62 70 75)
+set(CMAKE_CUDA_FLAGS_INIT "-std=c++17 -allow-unsupported-compiler")
+set(CMAKE_CUDA_ARCHITECTURES 60 61 62 70 75 80 86)
 set(CUDA_PROPAGATE_HOST_FLAGS ON)
-set(CUDA_LIBRARY CUDA::cudart)
 
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     set_property(CACHE CMAKE_BUILD_TYPE PROPERTY VALUE Release)
@@ -59,7 +58,7 @@ target_include_directories(${PROJECT_NAME}
 
 #target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES})
 
-target_link_libraries(${PROJECT_NAME} PRIVATE CUDA::cudart)
+target_link_libraries(${PROJECT_NAME} PUBLIC CUDA::cudart)
 
 set(public_headers
         include/cuSZp_f32.h
@@ -70,7 +69,7 @@ set(public_headers
         include/cuSZp_entry_f64.h
         )
 
-set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+#set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 #include(Installing)
 
 option(CUSZP_BUILD_EXAMPLES "Option to enable building example programs" ON)
