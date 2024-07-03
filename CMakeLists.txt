@@ -71,7 +71,7 @@ set(public_headers
         )
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
-include(Installing)
+#include(Installing)
 
 option(CUSZP_BUILD_EXAMPLES "Option to enable building example programs" ON)
 if (CUSZP_BUILD_EXAMPLES)
